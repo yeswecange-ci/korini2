@@ -15,7 +15,7 @@
     <!-- ══ HEADER + NEWSLETTER ══ -->
     <header class="container mb-5">
         <div class="logo">
-            <img src="{{ asset('img/LOGO-PDG.png') }}" alt="logo">
+            <img src="{{ asset('img/LOGO-PDG.webp') }}" alt="logo">
         </div>
 
         <div class="row">
@@ -48,7 +48,7 @@
             <!-- Contact -->
             <div class=" col-sm-6 col-md-6 col-lg-3">
                 <a href="" class="card-photo">
-                    <img src="{{ asset('img/1.png') }}" alt="img">
+                    <img src="{{ asset('img/1.webp') }}" alt="img">
                     <div class="card-info">
                         <span>Contact</span>
                     </div>
@@ -58,7 +58,7 @@
             <!-- Devenir client -->
             <div class=" col-sm-6 col-md-6 col-lg-3">
                 <a href="" class="card-photo">
-                    <img src="{{ asset('img/2.png') }}  " alt="img">
+                    <img src="{{ asset('img/2.webp') }}" alt="img">
                     <div class="card-info">
                         <span>Devenir client ?</span>
                     </div>
@@ -68,7 +68,7 @@
             <!-- Solutions PME -->
             <div class="col-sm-6 col-md-6 col-lg-3">
                 <a href="" class="card-photo">
-                    <img src="{{ asset('img/3.png') }}" alt="img">
+                    <img src="{{ asset('img/3.webp') }}" alt="img">
                     <div class="card-info">
                         <span>Solutions PME</span>
                     </div>
@@ -78,7 +78,7 @@
             <!-- Solutions -->
             <div class=" col-sm-6 col-md-6 col-lg-3">
                 <a href="" class="card-photo">
-                    <img src="{{ asset('img/4.png') }}" alt="img">
+                    <img src="{{ asset('img/4.webp') }}" alt="img">
                     <div class="card-info">
                         <span>Solutions innovantes</span>
                     </div>
