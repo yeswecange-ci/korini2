@@ -214,3 +214,14 @@ body {
     background: #f29220;
     border-radius: 2px;
 }
+
+@media (hover: none), (max-width: 768px) {
+    .card-photo::before {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.45);
+    }
+    .card-info {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
