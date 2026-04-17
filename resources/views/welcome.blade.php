@@ -29,13 +29,14 @@
 
                 <!-- Newsletter directement sous le titre -->
                 <p class="site-subtitle mb-3">Inscrivez-vous pour obtenir un accès prioritaire dès le lancement.</p>
-                <form onsubmit="handleNewsletter(event)">
+                <form onsubmit="handleNewsletter(event)" id="nl-form">
+                    @csrf
                     <div class="nl-wrap">
-                        <input type="email" placeholder="Ton adresse e-mail" required>
-                        <button type="submit">S'inscrire</button>
+                        <input type="email" name="email" id="nl-email" placeholder="Ton adresse e-mail" required>
+                        <button type="submit" id="nl-btn">S'inscrire</button>
                     </div>
                 </form>
-                <p class="nl-success mt-2" id="nl-success">✓ &nbsp;Merci ! Tu es bien inscrit(e).</p>
+                <p class="nl-success mt-2" id="nl-success" style="display:none;"></p>
             </div>
         </div>
     </header>
@@ -100,10 +101,42 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        function handleNewsletter(e) {
+        async function handleNewsletter(e) {
             e.preventDefault();
-            e.target.style.display = 'none';
-            document.getElementById('nl-success').style.display = 'block';
+
+            const btn = document.getElementById('nl-btn');
+            const msg = document.getElementById('nl-success');
+            const email = document.getElementById('nl-email').value;
+            const csrf = document.querySelector('input[name="_token"]').value;
+
+            btn.disabled = true;
+            btn.textContent = '...';
+
+            try {
+                const res = await fetch('{{ route("leads.store") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrf,
+                        'Accept': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await res.json();
+
+                document.getElementById('nl-form').style.display = 'none';
+                msg.style.display = 'block';
+                msg.textContent = data.already
+                    ? '✓ Vous êtes déjà inscrit(e) !'
+                    : '✓ Merci ! Tu es bien inscrit(e).';
+            } catch {
+                btn.disabled = false;
+                btn.textContent = "S'inscrire";
+                msg.style.display = 'block';
+                msg.style.color = 'red';
+                msg.textContent = 'Une erreur est survenue. Réessaie.';
+            }
         }
     </script>
 
